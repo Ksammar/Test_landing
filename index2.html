@@ -3,44 +3,58 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Горизонт Космоса — Новости космонавтики</title>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700;800&display=swap" rel="stylesheet">
+    <title>Звездный Путь | Писатель-фантаст</title>
+    <!-- Шрифты -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700&family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
     <style>
-        /* Переменные и сброс настроек */
+        /* Переменные и общие стили */
         :root {
-            --deep-space: #05070a;
-            --nebula-blue: #00d4ff;
-            --gold-accent: #ffcc33;
-            --text-light: #f0f0f0;
-            --glass-bg: rgba(255, 255, 255, 0.05);
-            --transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            --space-black: #0a0b1e;
+            --nebula-blue: #1e3a8a;
+            --cosmic-cyan: #00d2ff;
+            --star-gold: #d4af37;
+            --soft-gold: #ffcc33;
+            --text-light: #e0e0e0;
+            --transition: all 0.4s ease;
         }
 
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+        }
+
+        html {
             scroll-behavior: smooth;
         }
 
         body {
             font-family: 'Montserrat', sans-serif;
-            background-color: var(--deep-space);
+            background-color: var(--space-black);
             color: var(--text-light);
             line-height: 1.6;
             overflow-x: hidden;
         }
 
-        /* Фоновая анимация "Звезды" */
-        body::before {
-            content: "";
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: radial-gradient(ellipse at bottom, #1B2735 0%, #090A0F 100%);
-            z-index: -2;
+        h1, h2, h3, .logo {
+            font-family: 'Orbitron', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
         }
 
         /* Навигация */
@@ -48,192 +62,196 @@
             position: fixed;
             top: 0;
             width: 100%;
-            padding: 20px 50px;
+            background: rgba(10, 11, 30, 0.9);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+        }
+
+        .nav-container {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            background: rgba(5, 7, 10, 0.8);
-            backdrop-filter: blur(10px);
-            z-index: 1000;
-            border-bottom: 1px solid rgba(0, 212, 255, 0.2);
+            height: 70px;
         }
 
         .logo {
-            font-size: 1.5rem;
-            font-weight: 800;
-            color: var(--gold-accent);
-            text-transform: uppercase;
-            letter-spacing: 2px;
+            font-size: 1.2rem;
+            color: var(--star-gold);
+            font-weight: 700;
         }
 
-        .nav-links a {
-            color: var(--text-light);
-            text-decoration: none;
-            margin-left: 30px;
-            font-weight: 400;
-            transition: var(--transition);
+        .nav-links {
+            display: flex;
+            gap: 30px;
         }
 
         .nav-links a:hover {
-            color: var(--nebula-blue);
+            color: var(--cosmic-cyan);
+            transition: var(--transition);
         }
 
-        /* Hero Section */
-        .hero {
+        /* Главный раздел (Hero) */
+        #hero {
             height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), 
-                        url('https://images.unsplash.com/photo-1464802686167-b939a6910659?auto=format&fit=crop&q=80&w=1920') no-repeat center center/cover;
-            padding: 0 20px;
-        }
-
-        .hero h1 {
-            font-size: 4rem;
-            font-weight: 800;
-            margin-bottom: 20px;
-            background: linear-gradient(to right, #fff, var(--nebula-blue), var(--gold-accent));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            animation: fadeInDown 1s ease-out;
-        }
-
-        .hero p {
-            font-size: 1.2rem;
-            max-width: 700px;
-            margin-bottom: 40px;
-            color: #ccc;
-            animation: fadeInUp 1s ease-out 0.3s backwards;
-        }
-
-        .cta-btn {
-            padding: 15px 40px;
-            background: transparent;
-            color: var(--gold-accent);
-            border: 2px solid var(--gold-accent);
-            font-size: 1.1rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            cursor: pointer;
-            transition: var(--transition);
-            position: relative;
-            overflow: hidden;
-            border-radius: 5px;
-            text-decoration: none;
-        }
-
-        .cta-btn:hover {
-            background: var(--gold-accent);
-            color: var(--deep-space);
-            box-shadow: 0 0 20px rgba(255, 204, 51, 0.6);
-            transform: translateY(-3px);
-        }
-
-        /* Секция Предпросмотра (Топ-3) */
-        .section-title {
-            text-align: center;
-            margin: 80px 0 40px;
-            font-size: 2.5rem;
-        }
-
-        .section-title span {
-            color: var(--nebula-blue);
-        }
-
-        .preview-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            padding: 0 10%;
-            margin-bottom: 100px;
-        }
-
-        .card {
-            background: var(--glass-bg);
-            border: 1px solid rgba(255,255,255,0.1);
-            border-radius: 15px;
-            overflow: hidden;
-            transition: var(--transition);
-            cursor: pointer;
-            backdrop-filter: blur(5px);
-        }
-
-        .card:hover {
-            transform: translateY(-10px) scale(1.02);
-            border-color: var(--nebula-blue);
-            box-shadow: 0 10px 30px rgba(0, 212, 255, 0.2);
-        }
-
-        .card-img {
-            height: 200px;
+            background: linear-gradient(rgba(10, 11, 30, 0.7), rgba(10, 11, 30, 0.7)), 
+                        url('https://images.unsplash.com/photo-1462331940025-496dfbfc7564?auto=format&fit=crop&w=1920&q=80');
             background-size: cover;
             background-position: center;
-            transition: 0.5s ease;
-        }
-
-        .card:hover .card-img {
-            transform: scale(1.1);
-        }
-
-        .card-content {
-            padding: 20px;
-        }
-
-        .card-tag {
-            color: var(--gold-accent);
-            font-size: 0.8rem;
-            text-transform: uppercase;
-            font-weight: 700;
-        }
-
-        .card h3 {
-            margin: 10px 0;
-            font-size: 1.3rem;
-        }
-
-        /* Лента новостей */
-        .feed-container {
-            max-width: 900px;
-            margin: 0 auto 100px;
-            padding: 0 20px;
-        }
-
-        .feed-item {
             display: flex;
-            gap: 30px;
-            background: rgba(255,255,255,0.02);
-            margin-bottom: 30px;
-            padding: 20px;
-            border-radius: 10px;
-            border-left: 4px solid var(--nebula-blue);
-            transition: var(--transition);
-            opacity: 0;
-            transform: translateX(-20px);
-            animation: slideIn 0.6s forwards;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
         }
 
-        .feed-item:hover {
-            background: rgba(255,255,255,0.05);
-            border-left-color: var(--gold-accent);
+        .hero-content h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            background: linear-gradient(to right, #fff, var(--star-gold));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: fadeInDown 1.5s ease;
         }
 
-        .feed-date {
-            min-width: 100px;
-            color: var(--nebula-blue);
-            font-weight: 700;
-        }
-
-        .feed-info h4 {
-            margin-bottom: 5px;
+        .hero-content p {
             font-size: 1.2rem;
+            margin-bottom: 30px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            animation: fadeInUp 1.5s ease;
         }
 
-        .feed-info p {
-            font-size: 0.9rem;
-            color: #aaa;
+        .btn {
+            display: inline-block;
+            padding: 15px 40px;
+            background: transparent;
+            border: 2px solid var(--star-gold);
+            color: var(--star-gold);
+            font-family: 'Orbitron', sans-serif;
+            font-weight: bold;
+            border-radius: 5px;
+            transition: var(--transition);
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn:hover {
+            background: var(--star-gold);
+            color: var(--space-black);
+            box-shadow: 0 0 20px var(--star-gold);
+        }
+
+        /* Об авторе */
+        #about {
+            padding: 100px 0;
+            background: radial-gradient(circle at top right, #1a1a3a, var(--space-black));
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .about-image {
+            width: 100%;
+            height: 400px;
+            background: url('https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?auto=format&fit=crop&w=800&q=80');
+            background-size: cover;
+            border-radius: 15px;
+            border: 1px solid var(--cosmic-cyan);
+            box-shadow: 0 0 30px rgba(0, 210, 255, 0.2);
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 30px;
+            color: var(--star-gold);
+        }
+
+        /* Книги */
+        #books {
+            padding: 100px 0;
+            background-color: var(--space-black);
+        }
+
+        .books-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .book-card {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 20px;
+            border-radius: 15px;
+            text-align: center;
+            transition: var(--transition);
+            border: 1px solid transparent;
+        }
+
+        .book-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--cosmic-cyan);
+            background: rgba(255, 255, 255, 0.08);
+            box-shadow: 0 10px 30px rgba(0, 210, 255, 0.1);
+        }
+
+        .book-cover {
+            width: 100%;
+            height: 350px;
+            background-color: #222;
+            margin-bottom: 20px;
+            border-radius: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            color: #555;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .book-card h3 {
+            margin-bottom: 10px;
+            color: var(--soft-gold);
+        }
+
+        /* Контакты и График */
+        #contact {
+            padding: 100px 0;
+            background: linear-gradient(to bottom, var(--space-black), #050510);
+        }
+
+        .contact-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+        }
+
+        .schedule-list {
+            background: rgba(212, 175, 55, 0.05);
+            padding: 30px;
+            border-left: 4px solid var(--star-gold);
+            border-radius: 0 15px 15px 0;
+        }
+
+        .schedule-item {
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: space-between;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            padding-bottom: 5px;
+        }
+
+        .schedule-item span:first-child {
+            color: var(--cosmic-cyan);
+            font-weight: bold;
         }
 
         /* Анимации */
@@ -247,121 +265,145 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        @keyframes slideIn {
-            to { opacity: 1; transform: translateX(0); }
-        }
-
-        /* Мобильная адаптивность */
+        /* Адаптивность */
         @media (max-width: 768px) {
-            nav { padding: 15px 20px; }
-            .nav-links { display: none; }
-            .hero h1 { font-size: 2.5rem; }
-            .preview-grid { padding: 0 20px; }
-            .feed-item { flex-direction: column; gap: 10px; }
-            .feed-date { min-width: auto; }
+            .hero-content h1 { font-size: 2.2rem; }
+            .about-grid, .contact-content { grid-template-columns: 1fr; }
+            .nav-links { display: none; } /* Для простоты в этом примере */
+            .about-image { order: -1; }
         }
 
         footer {
             text-align: center;
-            padding: 50px;
+            padding: 40px 0;
             border-top: 1px solid rgba(255,255,255,0.1);
-            color: #666;
+            font-size: 0.9rem;
+            color: #777;
         }
     </style>
 </head>
 <body>
 
+    <!-- Навигация -->
     <nav>
-        <div class="logo">Cosmos Horizon</div>
-        <div class="nav-links">
-            <a href="#home">Главная</a>
-            <a href="#preview">Популярное</a>
-            <a href="#feed">Лента</a>
+        <div class="container nav-container">
+            <div class="logo">Astra_Writer</div>
+            <ul class="nav-links">
+                <li><a href="#hero">Главная</a></li>
+                <li><a href="#about">Об авторе</a></li>
+                <li><a href="#books">Книги</a></li>
+                <li><a href="#contact">Обновления</a></li>
+            </ul>
         </div>
     </nav>
 
-    <section class="hero" id="home">
-        <h1>ИССЛЕДУЙ БЕСКОНЕЧНОСТЬ</h1>
-        <p>Главные события российской и мировой космонавтики: от запусков на Восточном до тайн глубокого космоса в одном месте.</p>
-        <a href="#preview" class="cta-btn">Начать чтение</a>
+    <!-- Главный раздел -->
+    <section id="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Миры за гранью событий</h1>
+                <p>Погрузитесь в бесконечность космоса, где каждое слово открывает новую галактику. Исследуйте неизведанное вместе с героями моих романов.</p>
+                <a href="#books" class="btn">Начать чтение</a>
+            </div>
+        </div>
     </section>
 
-    <h2 class="section-title" id="preview">Срочно в <span>номере</span></h2>
-    
-    <div class="preview-grid">
-        <!-- Карточка 1 -->
-        <div class="card">
-            <div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1517976487492-5750f3195933?auto=format&fit=crop&q=80&w=600');"></div>
-            <div class="card-content">
-                <span class="card-tag">Роскосмос</span>
-                <h3>Ангара-А5: Новый этап в тяжелых пусках</h3>
-                <p>Успешный старт с космодрома Восточный открывает новые возможности для лунной программы...</p>
+    <!-- Об авторе -->
+    <section id="about">
+        <div class="container">
+            <div class="about-grid">
+                <div class="about-text">
+                    <h2 class="section-title">Путь к звездам</h2>
+                    <p>Моя история началась не за письменным столом, а на заднем дворе, где я часами смотрел в старый дедушкин телескоп. Пока сверстники играли в футбол, я изучал карты созвездий и представлял, что скрывается в туманности Андромеды.</p>
+                    <br>
+                    <p>Годы чтения Азимова, Лема и Кларка превратились в страсть. Я поглощал научные журналы о черных дырах и квантовой физике, пока однажды не понял: я больше не могу просто читать чужие истории. У меня накопились свои.</p>
+                    <br>
+                    <p>Сегодня я пишу о том, что ждет человечество там, где заканчивается свет нашего Солнца.</p>
+                </div>
+                <div class="about-image"></div>
             </div>
         </div>
+    </section>
 
-        <!-- Карточка 2 -->
-        <div class="card">
-            <div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1614728894747-a83421e2b9c9?auto=format&fit=crop&q=80&w=600');"></div>
-            <div class="card-content">
-                <span class="card-tag">Наука</span>
-                <h3>Телескоп Webb обнаружил воду в атмосфере экзопланеты</h3>
-                <p>Уникальные спектральные данные подтверждают наличие водяного пара в обитаемой зоне...</p>
+    <!-- Раздел с книгами -->
+    <section id="books">
+        <div class="container">
+            <h2 class="section-title" style="text-align: center;">Библиотека миров</h2>
+            <div class="books-grid">
+                <!-- Книга 1 -->
+                <div class="book-card">
+                    <div class="book-cover" style="background-image: url('https://images.unsplash.com/photo-1614728263952-84ea256f9679?auto=format&fit=crop&w=400&q=80');"></div>
+                    <h3>Тень Ориона</h3>
+                    <p>Первый контакт оказался не таким, как мы ждали. Политический триллер в масштабах галактики.</p>
+                </div>
+                <!-- Книга 2 -->
+                <div class="book-card">
+                    <div class="book-cover" style="background-image: url('https://images.unsplash.com/photo-1465101162946-4377e57745c3?auto=format&fit=crop&w=400&q=80');"></div>
+                    <h3>Сверхновая</h3>
+                    <p>Когда солнце гаснет, человечество ищет дом среди обломков древних цивилизаций.</p>
+                </div>
+                <!-- Книга 3 -->
+                <div class="book-card">
+                    <div class="book-cover" style="background-image: url('https://images.unsplash.com/photo-1506318137071-a8e063b4bcc0?auto=format&fit=crop&w=400&q=80');"></div>
+                    <h3>Код Пустоты</h3>
+                    <p>Киберпанк на краю черной дыры. Что важнее: человеческая душа или программный код?</p>
+                </div>
+                <!-- Книга 4 -->
+                <div class="book-card">
+                    <div class="book-cover" style="background-image: url('https://images.unsplash.com/photo-1444703686981-a3abb997b721?auto=format&fit=crop&w=400&q=80');"></div>
+                    <h3>Атлас Андромеды</h3>
+                    <p>Сборник рассказов о первых колонистах и их борьбе с враждебной средой.</p>
+                </div>
             </div>
         </div>
+    </section>
 
-        <!-- Карточка 3 -->
-        <div class="card">
-            <div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&q=80&w=600');"></div>
-            <div class="card-content">
-                <span class="card-tag">SpaceX</span>
-                <h3>Starship готов к пятому тестовому полету</h3>
-                <p>Илон Маск заявил, что система фиксации ускорителя Mechazilla прошла финальные тесты...</p>
+    <!-- Контакты и График -->
+    <section id="contact">
+        <div class="container">
+            <div class="contact-content">
+                <div>
+                    <h2 class="section-title">Связь с ЦУП</h2>
+                    <p>Хотите обсудить сюжет, предложить идею для новой главы или просто поделиться впечатлениями? Я всегда на связи.</p>
+                    <br>
+                    <p><strong>Email:</strong> captain@space-stories.com</p>
+                    <p><strong>Telegram:</strong> @astrawriter_channel</p>
+                    <br>
+                    <a href="#" class="btn">Подписаться на рассылку</a>
+                </div>
+                <div>
+                    <h3 style="margin-bottom: 20px; color: var(--star-gold);">График выхода глав</h3>
+                    <div class="schedule-list">
+                        <div class="schedule-item">
+                            <span>"Тень Ориона"</span>
+                            <span>Каждый вторник</span>
+                        </div>
+                        <div class="schedule-item">
+                            <span>"Код Пустоты"</span>
+                            <span>Четверг (через неделю)</span>
+                        </div>
+                        <div class="schedule-item">
+                            <span>Ответы на вопросы</span>
+                            <span>Последнее воскресенье месяца</span>
+                        </div>
+                        <div class="schedule-item">
+                            <span>Новый анонс</span>
+                            <span>15 октября</span>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
-
-    <h2 class="section-title" id="feed">Последние <span>обновления</span></h2>
-
-    <div class="feed-container">
-        <div class="feed-item" style="animation-delay: 0.1s;">
-            <div class="feed-date">29 МАЯ</div>
-            <div class="feed-info">
-                <h4>РФ и Китай подписали соглашение о лунной станции</h4>
-                <p>Проект Международной научной лунной станции переходит в стадию проектирования модулей жизнеобеспечения.</p>
-            </div>
-        </div>
-
-        <div class="feed-item" style="animation-delay: 0.2s;">
-            <div class="feed-date">28 МАЯ</div>
-            <div class="feed-info">
-                <h4>Марсоход Perseverance нашел странные "белые камни"</h4>
-                <p>Геологическая находка в кратере Езеро может указывать на иные вулканические процессы в прошлом Марса.</p>
-            </div>
-        </div>
-
-        <div class="feed-item" style="animation-delay: 0.3s;">
-            <div class="feed-date">27 МАЯ</div>
-            <div class="feed-info">
-                <h4>Запуск грузового корабля «Прогресс МС-27»</h4>
-                <p>Корабль успешно пристыковался к МКС, доставив 2.5 тонны грузов и оборудования для экспериментов.</p>
-            </div>
-        </div>
-
-        <div class="feed-item" style="animation-delay: 0.4s;">
-            <div class="feed-date">25 МАЯ</div>
-            <div class="feed-info">
-                <h4>Обнаружена самая массивная черная дыра звездных масс</h4>
-                <p>Объект Gaia BH3 в нашей галактике в 33 раза тяжелее Солнца, что ставит под сомнение текущие модели эволюции звезд.</p>
-            </div>
-        </div>
-    </div>
+    </section>
 
     <footer>
-        <p>&copy; 2024 Cosmos Horizon. Путешествие к звездам начинается здесь.</p>
+        <div class="container">
+            <p>&copy; 2023 Astra_Writer. Все права защищены. Вселенные созданы воображением.</p>
+        </div>
     </footer>
 
+    <!-- Простой скрипт для появления элементов при скролле -->
     <script>
-        // Простой скрипт для появления элементов при прокрутке
         const observerOptions = {
             threshold: 0.1
         };
@@ -370,12 +412,15 @@
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.style.opacity = "1";
-                    entry.target.style.transform = "translateY(0) translateX(0)";
+                    entry.target.style.transform = "translateY(0)";
                 }
             });
         }, observerOptions);
 
-        document.querySelectorAll('.card, .feed-item').forEach(el => {
+        document.querySelectorAll('.book-card, .about-text, .schedule-list').forEach(el => {
+            el.style.opacity = "0";
+            el.style.transform = "translateY(30px)";
+            el.style.transition = "all 0.8s ease-out";
             observer.observe(el);
         });
     </script>
