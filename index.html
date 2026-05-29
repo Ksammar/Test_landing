@@ -195,10 +195,28 @@
         }
 
         /* Лента новостей */
+        .feed-section {
+            position: relative;
+            padding: 80px 0 100px;
+            overflow: hidden;
+        }
+
+        .feed-bg-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('ivana-cajina-asuyh-_ZX54-unsplash.jpg') no-repeat center center/cover;
+            opacity: 0.15;
+            z-index: -1;
+        }
+
         .feed-container {
             max-width: 900px;
-            margin: 0 auto 100px;
+            margin: 0 auto;
             padding: 0 20px;
+            position: relative;
         }
 
         .feed-item {
@@ -234,6 +252,16 @@
         .feed-info p {
             font-size: 0.9rem;
             color: #aaa;
+        }
+
+        .feed-title-link {
+            color: var(--text-light);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .feed-title-link:hover {
+            color: var(--nebula-blue);
         }
 
         /* Анимации */
@@ -289,44 +317,51 @@
     <h2 class="section-title" id="preview">Срочно в <span>номере</span></h2>
     
     <div class="preview-grid">
-        <!-- Карточка 1 -->
-        <div class="card">
-            <div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1517976487492-5750f3195933?auto=format&fit=crop&q=80&w=600');"></div>
-            <div class="card-content">
-                <span class="card-tag">Роскосмос</span>
-                <h3>Ангара-А5: Новый этап в тяжелых пусках</h3>
-                <p>Успешный старт с космодрома Восточный открывает новые возможности для лунной программы...</p>
+        <!-- Карточка 1 - Роскосмос -->
+        <a href="https://www.roscosmos.ru/24989/" target="_blank" style="text-decoration: none; color: inherit;">
+            <div class="card">
+                <div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1517976487492-5750f3195933?auto=format&fit=crop&q=80&w=600');"></div>
+                <div class="card-content">
+                    <span class="card-tag">Роскосмос</span>
+                    <h3>«Ангара-А5» успешно провела испытательный пуск с космодрома Восточный</h3>
+                    <p>Ракета-носитель тяжелого класса «Ангара-А5» успешно завершила испытательный полет, подтвердив готовность к серийному производству...</p>
+                </div>
             </div>
-        </div>
+        </a>
 
-        <!-- Карточка 2 -->
-        <div class="card">
-            <div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1614728894747-a83421e2b9c9?auto=format&fit=crop&q=80&w=600');"></div>
-            <div class="card-content">
-                <span class="card-tag">Наука</span>
-                <h3>Телескоп Webb обнаружил воду в атмосфере экзопланеты</h3>
-                <p>Уникальные спектральные данные подтверждают наличие водяного пара в обитаемой зоне...</p>
+        <!-- Карточка 2 - Наука -->
+        <a href="https://www.nasa.gov/feature/goddard/2023/webb-detects-carbon-dioxide-in-exoplanet-atmosphere" target="_blank" style="text-decoration: none; color: inherit;">
+            <div class="card">
+                <div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1614728894747-a83421e2b9c9?auto=format&fit=crop&q=80&w=600');"></div>
+                <div class="card-content">
+                    <span class="card-tag">Наука</span>
+                    <h3>Телескоп James Webb впервые обнаружил CO2 in атмосфере экзопланеты WASP-39b</h3>
+                    <p>Космический телескоп James Webb зафиксировал четкие доказательства наличия углекислого газа in атмосфере газообразного гиганта...</p>
+                </div>
             </div>
-        </div>
+        </a>
 
-        <!-- Карточка 3 -->
-        <div class="card">
-            <div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&q=80&w=600');"></div>
-            <div class="card-content">
-                <span class="card-tag">SpaceX</span>
-                <h3>Starship готов к пятому тестовому полету</h3>
-                <p>Илон Маск заявил, что система фиксации ускорителя Mechazilla прошла финальные тесты...</p>
+        <!-- Карточка 3 - Частная космонавтика -->
+        <a href="https://www.spacex.com/vehicles/starship/" target="_blank" style="text-decoration: none; color: inherit;">
+            <div class="card">
+                <div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&q=80&w=600');"></div>
+                <div class="card-content">
+                    <span class="card-tag">Частная космонавтика</span>
+                    <h3>SpaceX Starship: подготовка к орбитальному испытательному полету</h3>
+                    <p>Компания SpaceX завершила подготовку стартовой площадки и ожидает разрешения FAA на первый орбитальный запуск Starship...</p>
+                </div>
             </div>
-        </div>
+        </a>
     </div>
 
-    <h2 class="section-title" id="feed">Последние <span>обновления</span></h2>
-
-    <div class="feed-container">
+    <div class="feed-section">
+        <div class="feed-bg-image"></div>
+        <h2 class="section-title" id="feed">Последние <span>обновления</span></h2>
+        <div class="feed-container">
         <div class="feed-item" style="animation-delay: 0.1s;">
             <div class="feed-date">29 МАЯ</div>
             <div class="feed-info">
-                <h4>РФ и Китай подписали соглашение о лунной станции</h4>
+                <h4><a href="https://www.roscosmos.ru/" class="feed-title-link" target="_blank">РФ и Китай подписали соглашение о лунной станции</a></h4>
                 <p>Проект Международной научной лунной станции переходит в стадию проектирования модулей жизнеобеспечения.</p>
             </div>
         </div>
@@ -334,7 +369,7 @@
         <div class="feed-item" style="animation-delay: 0.2s;">
             <div class="feed-date">28 МАЯ</div>
             <div class="feed-info">
-                <h4>Марсоход Perseverance нашел странные "белые камни"</h4>
+                <h4><a href="https://www.nasa.gov/perseverance" class="feed-title-link" target="_blank">Марсоход Perseverance нашел странные "белые камни"</a></h4>
                 <p>Геологическая находка в кратере Езеро может указывать на иные вулканические процессы в прошлом Марса.</p>
             </div>
         </div>
@@ -342,7 +377,7 @@
         <div class="feed-item" style="animation-delay: 0.3s;">
             <div class="feed-date">27 МАЯ</div>
             <div class="feed-info">
-                <h4>Запуск грузового корабля «Прогресс МС-27»</h4>
+                <h4><a href="https://www.roscosmos.ru/" class="feed-title-link" target="_blank">Запуск грузового корабля «Прогресс МС-27»</a></h4>
                 <p>Корабль успешно пристыковался к МКС, доставив 2.5 тонны грузов и оборудования для экспериментов.</p>
             </div>
         </div>
@@ -350,9 +385,10 @@
         <div class="feed-item" style="animation-delay: 0.4s;">
             <div class="feed-date">25 МАЯ</div>
             <div class="feed-info">
-                <h4>Обнаружена самая массивная черная дыра звездных масс</h4>
+                <h4><a href="https://www.esa.int" class="feed-title-link" target="_blank">Обнаружена самая массивная черная дыра звездных масс</a></h4>
                 <p>Объект Gaia BH3 в нашей галактике в 33 раза тяжелее Солнца, что ставит под сомнение текущие модели эволюции звезд.</p>
             </div>
+        </div>
         </div>
     </div>
 
