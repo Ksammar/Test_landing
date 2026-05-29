@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Горизонт Космоса — Новости космонавтики</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700;800&display=swap" rel="stylesheet">
+    <style>
+        /* Переменные и сброс настроек */
+        :root {
+            --deep-space: #05070a;
+            --nebula-blue: #00d4ff;
+            --gold-accent: #ffcc33;
+            --text-light: #f0f0f0;
+            --glass-bg: rgba(255, 255, 255, 0.05);
+            --transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--deep-space);
+            color: var(--text-light);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Фоновая анимация "Звезды" */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(ellipse at bottom, #1B2735 0%, #090A0F 100%);
+            z-index: -2;
+        }
+
+        /* Навигация */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 20px 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(5, 7, 10, 0.8);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            border-bottom: 1px solid rgba(0, 212, 255, 0.2);
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--gold-accent);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .nav-links a {
+            color: var(--text-light);
+            text-decoration: none;
+            margin-left: 30px;
+            font-weight: 400;
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover {
+            color: var(--nebula-blue);
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), 
+                        url('https://images.unsplash.com/photo-1464802686167-b939a6910659?auto=format&fit=crop&q=80&w=1920') no-repeat center center/cover;
+            padding: 0 20px;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+            background: linear-gradient(to right, #fff, var(--nebula-blue), var(--gold-accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: fadeInDown 1s ease-out;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin-bottom: 40px;
+            color: #ccc;
+            animation: fadeInUp 1s ease-out 0.3s backwards;
+        }
+
+        .cta-btn {
+            padding: 15px 40px;
+            background: transparent;
+            color: var(--gold-accent);
+            border: 2px solid var(--gold-accent);
+            font-size: 1.1rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+            border-radius: 5px;
+            text-decoration: none;
+        }
+
+        .cta-btn:hover {
+            background: var(--gold-accent);
+            color: var(--deep-space);
+            box-shadow: 0 0 20px rgba(255, 204, 51, 0.6);
+            transform: translateY(-3px);
+        }
+
+        /* Секция Предпросмотра (Топ-3) */
+        .section-title {
+            text-align: center;
+            margin: 80px 0 40px;
+            font-size: 2.5rem;
+        }
+
+        .section-title span {
+            color: var(--nebula-blue);
+        }
+
+        .preview-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            padding: 0 10%;
+            margin-bottom: 100px;
+        }
+
+        .card {
+            background: var(--glass-bg);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 15px;
+            overflow: hidden;
+            transition: var(--transition);
+            cursor: pointer;
+            backdrop-filter: blur(5px);
+        }
+
+        .card:hover {
+            transform: translateY(-10px) scale(1.02);
+            border-color: var(--nebula-blue);
+            box-shadow: 0 10px 30px rgba(0, 212, 255, 0.2);
+        }
+
+        .card-img {
+            height: 200px;
+            background-size: cover;
+            background-position: center;
+            transition: 0.5s ease;
+        }
+
+        .card:hover .card-img {
+            transform: scale(1.1);
+        }
+
+        .card-content {
+            padding: 20px;
+        }
+
+        .card-tag {
+            color: var(--gold-accent);
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            font-weight: 700;
+        }
+
+        .card h3 {
+            margin: 10px 0;
+            font-size: 1.3rem;
+        }
+
+        /* Лента новостей */
+        .feed-container {
+            max-width: 900px;
+            margin: 0 auto 100px;
+            padding: 0 20px;
+        }
+
+        .feed-item {
+            display: flex;
+            gap: 30px;
+            background: rgba(255,255,255,0.02);
+            margin-bottom: 30px;
+            padding: 20px;
+            border-radius: 10px;
+            border-left: 4px solid var(--nebula-blue);
+            transition: var(--transition);
+            opacity: 0;
+            transform: translateX(-20px);
+            animation: slideIn 0.6s forwards;
+        }
+
+        .feed-item:hover {
+            background: rgba(255,255,255,0.05);
+            border-left-color: var(--gold-accent);
+        }
+
+        .feed-date {
+            min-width: 100px;
+            color: var(--nebula-blue);
+            font-weight: 700;
+        }
+
+        .feed-info h4 {
+            margin-bottom: 5px;
+            font-size: 1.2rem;
+        }
+
+        .feed-info p {
+            font-size: 0.9rem;
+            color: #aaa;
+        }
+
+        /* Анимации */
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes slideIn {
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        /* Мобильная адаптивность */
+        @media (max-width: 768px) {
+            nav { padding: 15px 20px; }
+            .nav-links { display: none; }
+            .hero h1 { font-size: 2.5rem; }
+            .preview-grid { padding: 0 20px; }
+            .feed-item { flex-direction: column; gap: 10px; }
+            .feed-date { min-width: auto; }
+        }
+
+        footer {
+            text-align: center;
+            padding: 50px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="logo">Cosmos Horizon</div>
+        <div class="nav-links">
+            <a href="#home">Главная</a>
+            <a href="#preview">Популярное</a>
+            <a href="#feed">Лента</a>
+        </div>
+    </nav>
+
+    <section class="hero" id="home">
+        <h1>ИССЛЕДУЙ БЕСКОНЕЧНОСТЬ</h1>
+        <p>Главные события российской и мировой космонавтики: от запусков на Восточном до тайн глубокого космоса в одном месте.</p>
+        <a href="#preview" class="cta-btn">Начать чтение</a>
+    </section>
+
+    <h2 class="section-title" id="preview">Срочно в <span>номере</span></h2>
+    
+    <div class="preview-grid">
+        <!-- Карточка 1 -->
+        <div class="card">
+            <div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1517976487492-5750f3195933?auto=format&fit=crop&q=80&w=600');"></div>
+            <div class="card-content">
+                <span class="card-tag">Роскосмос</span>
+                <h3>Ангара-А5: Новый этап в тяжелых пусках</h3>
+                <p>Успешный старт с космодрома Восточный открывает новые возможности для лунной программы...</p>
+            </div>
+        </div>
+
+        <!-- Карточка 2 -->
+        <div class="card">
+            <div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1614728894747-a83421e2b9c9?auto=format&fit=crop&q=80&w=600');"></div>
+            <div class="card-content">
+                <span class="card-tag">Наука</span>
+                <h3>Телескоп Webb обнаружил воду в атмосфере экзопланеты</h3>
+                <p>Уникальные спектральные данные подтверждают наличие водяного пара в обитаемой зоне...</p>
+            </div>
+        </div>
+
+        <!-- Карточка 3 -->
+        <div class="card">
+            <div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&q=80&w=600');"></div>
+            <div class="card-content">
+                <span class="card-tag">SpaceX</span>
+                <h3>Starship готов к пятому тестовому полету</h3>
+                <p>Илон Маск заявил, что система фиксации ускорителя Mechazilla прошла финальные тесты...</p>
+            </div>
+        </div>
+    </div>
+
+    <h2 class="section-title" id="feed">Последние <span>обновления</span></h2>
+
+    <div class="feed-container">
+        <div class="feed-item" style="animation-delay: 0.1s;">
+            <div class="feed-date">29 МАЯ</div>
+            <div class="feed-info">
+                <h4>РФ и Китай подписали соглашение о лунной станции</h4>
+                <p>Проект Международной научной лунной станции переходит в стадию проектирования модулей жизнеобеспечения.</p>
+            </div>
+        </div>
+
+        <div class="feed-item" style="animation-delay: 0.2s;">
+            <div class="feed-date">28 МАЯ</div>
+            <div class="feed-info">
+                <h4>Марсоход Perseverance нашел странные "белые камни"</h4>
+                <p>Геологическая находка в кратере Езеро может указывать на иные вулканические процессы в прошлом Марса.</p>
+            </div>
+        </div>
+
+        <div class="feed-item" style="animation-delay: 0.3s;">
+            <div class="feed-date">27 МАЯ</div>
+            <div class="feed-info">
+                <h4>Запуск грузового корабля «Прогресс МС-27»</h4>
+                <p>Корабль успешно пристыковался к МКС, доставив 2.5 тонны грузов и оборудования для экспериментов.</p>
+            </div>
+        </div>
+
+        <div class="feed-item" style="animation-delay: 0.4s;">
+            <div class="feed-date">25 МАЯ</div>
+            <div class="feed-info">
+                <h4>Обнаружена самая массивная черная дыра звездных масс</h4>
+                <p>Объект Gaia BH3 в нашей галактике в 33 раза тяжелее Солнца, что ставит под сомнение текущие модели эволюции звезд.</p>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 Cosmos Horizon. Путешествие к звездам начинается здесь.</p>
+    </footer>
+
+    <script>
+        // Простой скрипт для появления элементов при прокрутке
+        const observerOptions = {
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = "1";
+                    entry.target.style.transform = "translateY(0) translateX(0)";
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.card, .feed-item').forEach(el => {
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
